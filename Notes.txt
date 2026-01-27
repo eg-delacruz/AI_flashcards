@@ -1,0 +1,32 @@
+Project name:
+- AI Interview Flashcards
+
+Notes:
+- Focus on interview niche and technical questions
+    -> Othes don't display code properly, so I shoud try to add colors to it? -> carbon.now.shoud
+    -> Use client-side syntax lib:
+        + react-syntax-highlighter
+        + highlight.js
+    -> Use @monaco-editor/react -> create flashcards with code as in VS code
+    -> toggle between normal flashcards or code flashcards
+
+- Config options:
+
+- V1:
+    - Home view -> Display decks + create deck btn (display all decks in db for now)
+    - deck view -> display deck info + cards as a list with delete and edit btn + a create new btn
+    - Login
+    - create new deck view (for admin only)
+        -> generate whole deck or generate just the answer
+
+
+TODO:
+- Refine the current prototype
+- Investigate what elements should a design system have and how to store them in the styles of the Project
+- Create the design system
+- Define all the infos a deck should store
+- define DB collections
+- Login
+    - Use google for this
+    - Check Jean Paul's vn
+- Check how to handle cache to avoid refetch every time a user loads the page
