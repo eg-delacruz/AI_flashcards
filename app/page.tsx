@@ -106,7 +106,7 @@ const FlashcardApp = () => {
         <div className='px-4 py-2 pb-0 max-w-2xl mx-auto'>
           <div className='w-full bg-slate-800 h-1.5 rounded-full overflow-hidden'>
             <div
-              className='bg-indigo-500 h-full transition-all duration-300'
+              className='bg-cyan-500 h-full transition-all duration-300'
               style={{ width: `${progressPercentage}%` }}
             />
           </div>
@@ -143,11 +143,11 @@ const FlashcardApp = () => {
                 <div className='absolute -bottom-4 left-0 right-0 flex justify-center z-20'>
                   <button
                     onClick={handleFlip}
-                    className='bg-slate-800 border-2 border-slate-700 p-3 py-2 rounded-xl hover:bg-slate-700 hover:border-indigo-500 transition-all shadow-lg group hover:cursor-pointer'
+                    className='bg-slate-800 border-2 border-slate-700 p-3 py-2 rounded-xl hover:bg-slate-700 hover:border-cyan-500 transition-all shadow-lg group hover:cursor-pointer'
                   >
                     <ArrowRightLeft
                       size={22}
-                      className='text-indigo-400 group-hover:rotate-180 transition-transform duration-500'
+                      className='text-cyan-400 group-hover:rotate-180 transition-transform duration-500'
                     />
                   </button>
                 </div>
