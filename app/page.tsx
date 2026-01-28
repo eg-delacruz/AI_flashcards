@@ -1,15 +1,15 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   ChevronLeft,
   Trash2,
   Pencil,
   Settings,
-  RefreshCw,
   Frown,
   Meh,
   Smile,
+  ArrowRightLeft,
 } from 'lucide-react';
 // Make sure to install: npm i framer-motion
 import { motion, AnimatePresence } from 'framer-motion';
@@ -79,7 +79,7 @@ const FlashcardApp = () => {
     // Main Container
     <div className='flex flex-col h-screen bg-slate-950 text-slate-100 font-sans max-w-md mx-auto border-x border-slate-800 overflow-hidden'>
       {/* Header */}
-      <header className='flex items-center justify-between p-4 z-10 bg-slate-950'>
+      <header className='flex items-center justify-between px-4 py-1.5 z-10 bg-slate-950'>
         <button
           onClick={handleBack}
           className='p-2 hover:bg-slate-800 rounded-full transition-colors'
@@ -115,7 +115,7 @@ const FlashcardApp = () => {
       </div>
 
       {/* Main Flashcard Area Area */}
-      <main className='flex-grow relative p-6 overflow-hidden'>
+      <main className='grow relative p-4 pt-2 overflow-hidden'>
         {/* AnimatePresence enables exit animations when currentIndex changes */}
         <AnimatePresence mode='wait'>
           <motion.div
@@ -128,19 +128,19 @@ const FlashcardApp = () => {
             className='h-full'
           >
             {/* The Card Frame (Relative container for floating elements) */}
-            <div className='h-full bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl relative flex flex-col'>
+            <div className='h-full bg-slate-900 border border-slate-800 rounded-md shadow-2xl relative flex flex-col'>
               {/* 1. Floating Front/Back Indicator (Higher Z-Index) */}
-              <span className='absolute top-5 left-6 text-[10px] font-extrabold tracking-[0.2em] text-indigo-400 uppercase z-20 pointer-events-none'>
-                {isFlipped ? 'Back' : 'Front'}
+              <span className='absolute -top-2 left-3 text-[10px] font-extrabold tracking-[0.2em] z-20 pointer-events-none rounded-sm px-2 py-1 backdrop-blur-sm border-slate-700 bg-slate-500'>
+                {isFlipped ? 'BACK' : 'FRONT'}
               </span>
 
               {/* 2. Floating Flip Button (Higher Z-Index) */}
-              <div className='absolute -bottom-6 left-0 right-0 flex justify-center z-20'>
+              <div className='absolute -bottom-4 left-0 right-0 flex justify-center z-20'>
                 <button
                   onClick={handleFlip}
-                  className='bg-slate-800 border-2 border-slate-700 p-3 rounded-2xl hover:bg-slate-700 hover:border-indigo-500 transition-all shadow-lg group'
+                  className='bg-slate-800 border-2 border-slate-700 p-3 py-2 rounded-xl hover:bg-slate-700 hover:border-indigo-500 transition-all shadow-lg group hover:cursor-pointer'
                 >
-                  <RefreshCw
+                  <ArrowRightLeft
                     size={22}
                     className='text-indigo-400 group-hover:rotate-180 transition-transform duration-500'
                   />
@@ -149,9 +149,9 @@ const FlashcardApp = () => {
 
               {/* 3. Scrollable Content Area (Lower Z-index) */}
               {/* 'overflow-y-auto' here ensures scrolling only happens if content is too big for this container height */}
-              <div className='flex-grow overflow-y-auto p-8 custom-scrollbar z-10'>
+              <div className='grow overflow-y-auto p-8 custom-scrollbar z-10'>
                 {/* Inner container to center content vertically if it's short */}
-                <div className='min-h-full flex items-center justify-center py-8'>
+                <div className='min-h-full flex items-center justify-center py-8 pt-4'>
                   {/* Vertical Slide Animation on flip */}
                   <AnimatePresence mode='wait' initial={false}>
                     <motion.p

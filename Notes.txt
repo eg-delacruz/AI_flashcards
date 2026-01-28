@@ -27,6 +27,6 @@ TODO:
 - Define all the infos a deck should store
 - define DB collections
 - Login
-    - Use google for this
-    - Check Jean Paul's vn
+    - read NextJS docs regarding authentication -> https://nextjs.org/docs/app/guides/authentication
+    - Only implement login with google and with user and password
 - Check how to handle cache to avoid refetch every time a user loads the page
