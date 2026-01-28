@@ -103,7 +103,7 @@ const FlashcardApp = () => {
 
       {/* Progress Section - Full Width */}
       <div className='w-full z-10 bg-slate-950'>
-        <div className='px-4 py-2 max-w-2xl mx-auto'>
+        <div className='px-4 py-2 pb-0 max-w-2xl mx-auto'>
           <div className='w-full bg-slate-800 h-1.5 rounded-full overflow-hidden'>
             <div
               className='bg-indigo-500 h-full transition-all duration-300'
@@ -119,7 +119,7 @@ const FlashcardApp = () => {
       </div>
 
       {/* Main Flashcard Area */}
-      <main className='grow flex justify-center items-center w-full overflow-hidden bg-slate-950 px-4 py-4'>
+      <main className='grow flex justify-center items-center w-full overflow-hidden bg-slate-950 p-4 pt-2'>
         <div className='w-full max-w-md h-full'>
           {/* AnimatePresence enables exit animations when currentIndex changes */}
           <AnimatePresence mode='wait'>
