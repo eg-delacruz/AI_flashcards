@@ -15,7 +15,7 @@ import {
 import { AnimatePresence } from 'motion/react';
 import { motion } from 'motion/react';
 import CodeDisplay from '@/components/CodeDisplay/CodeDisplay';
-import { react_deck } from '@/data/decks';
+import { react_beginner } from '@/data/decks';
 
 const FlashcardApp = () => {
   // Preload the syntax highlighter library
@@ -35,7 +35,7 @@ const FlashcardApp = () => {
 
     return () => clearTimeout(timer);
   }, []);
-  const [cards] = useState(react_deck);
+  const [cards] = useState(react_beginner.cards);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -160,7 +160,7 @@ const FlashcardApp = () => {
 
                 {/* 3. Scrollable Content Area (Lower Z-index) */}
                 {/* 'overflow-y-auto' here ensures scrolling only happens if content is too big for this container height */}
-                <div className='grow overflow-y-auto p-3 custom-scrollbar z-10'>
+                <div className='grow overflow-y-auto p-4 custom-scrollbar z-10'>
                   {/* Inner container to center content vertically if it's short */}
                   <div className='min-h-full flex items-center justify-center py-8 pt-4'>
                     {/* Vertical Slide Animation on flip */}
@@ -182,7 +182,7 @@ const FlashcardApp = () => {
                             />
                           </div>
                         ) : (
-                          <p className='text-xl text-center leading-relaxed font-medium'>
+                          <p className='text-3xl text-center leading-relaxed font-medium'>
                             {currentCard.front}
                           </p>
                         )}

@@ -46,7 +46,7 @@ const CodeDisplay = ({
         ...props
       }: React.HTMLAttributes<HTMLParagraphElement>) => (
         <p
-          className='mb-4 last:mb-0 text-base leading-relaxed text-slate-100'
+          className='mb-4 last:mb-0 text-lg leading-relaxed text-slate-100'
           {...props}
         >
           {children}
