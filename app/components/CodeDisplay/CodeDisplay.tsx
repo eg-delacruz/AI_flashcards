@@ -5,7 +5,6 @@ import { useMemo, useState } from 'react';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Components } from 'react-markdown';
 import { RotateCcw } from 'lucide-react';
 
 type CodeDisplayProps = {

@@ -1,33 +1,91 @@
-# AI_flashcards
-Intended to rapidly create flashcards to study topics. Mainly to prepare for technical interviews
+# AI Flashcards
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+A modern flashcard application designed to help developers prepare for technical interviews. It features interactive flashcards with syntax-highlighted code examples and smooth animations for an engaging study experience.
+
+## Features
+
+- 📚 Interactive flashcard interface with flip animations
+- 💻 Syntax-highlighted code blocks with oneDark theme
+- 📊 Progress tracking
+- 🎯 Study modes for different confidence levels (Don't know, Familiar, Mastered)
+- ⚡ Dynamic code syntax highlighter with fallback support
+- 📱 Responsive design optimized for desktop and mobile
+
+## Tech Stack
+
+- **Framework**: Next.js with React
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Motion (Framer Motion)
+- **Code Highlighting**: react-syntax-highlighter
+- **Markdown Parsing**: react-markdown
+- **Icons**: Lucide React
+- **Package Manager**: pnpm
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js (v18 or higher)
+- pnpm
+
+### Installation
+
+```bash
+pnpm install
+```
+
+### Running the Development Server
 
 ```bash
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Card Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Each flashcard consists of the following attributes:
 
-## Learn More
+```typescript
+{
+  id: number;           // Unique identifier for the card
+  front: string;        // Question or prompt displayed on the front
+  back: string;         // Answer with support for markdown and code blocks
+  language: string;     // Default syntax highlighting language (e.g., 'javascript', 'jsx')
+}
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Back Content Format
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The `back` field supports **markdown formatting** with syntax-highlighted code blocks. You can combine text explanations with code snippets:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Text Content**: Simply write plain text for explanations and definitions.
 
-## Deploy on Vercel
+**Code Blocks**: Use markdown syntax with triple backticks and language specifier:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```javascript
+const [count, setCount] = useState(0);
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Example Card**:
+```typescript
+{
+  id: 1,
+  front: 'What is useState?',
+  back: `useState is a React hook for managing state in functional components.
+
+Example:
+\`\`\`javascript
+const [count, setCount] = useState(0);
+\`\`\`
+
+You can also initialize with a function:
+\`\`\`javascript
+const [state, setState] = useState(() => expensiveComputation());
+\`\`\``,
+  language: 'javascript',
+}
+```
+
+
