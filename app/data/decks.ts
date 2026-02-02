@@ -22,8 +22,8 @@ const react_beginner: {
     {
       id: '3',
       front: 'What is JSX?',
-      back: 'JSX (JavaScript XML) is a syntax extension for JavaScript that allows you to write HTML-like code in JavaScript. It makes React code more readable and expressive.\n\nExample:\n```javascript\nconst element = <h1>Hello, world!</h1>;',
-      language: 'javascript',
+      back: 'JSX (JavaScript XML) is a syntax extension for JavaScript that allows you to write HTML-like code in JavaScript. It makes React code more readable and expressive.\n\nExample:\n```jsx\nconst element = <h1>Hello, world!</h1>;',
+      language: 'jsx',
     },
     {
       id: '4',
@@ -46,38 +46,38 @@ const react_beginner: {
     {
       id: '7',
       front: 'What are keys in React lists?',
-      back: 'Keys are special string attributes that help React identify which items have changed, been added, or been removed in lists. They should be unique among siblings.\n\nExample:\n```javascript\n{items.map(item => (\n  <li key={item.id}>{item.name}</li>\n))}',
-      language: 'javascript',
+      back: 'Keys are special string attributes that help React identify which items have changed, been added, or been removed in lists. They should be unique among siblings.\n\nExample:\n```jsx\n{items.map(item => (\n  <li key={item.id}>{item.name}</li>\n))}',
+      language: 'jsx',
     },
     {
       id: '8',
       front: 'What is conditional rendering in React?',
-      back: 'Conditional rendering refers to displaying different UI elements based on certain conditions. This can be done using JavaScript operators like if statements, ternary operators, or logical && operator.\n\nExample:\n```javascript\n{isLoggedIn ? <Welcome /> : <Login />}',
-      language: 'javascript',
+      back: 'Conditional rendering refers to displaying different UI elements based on certain conditions. This can be done using JavaScript operators like if statements, ternary operators, or logical && operator.\n\nExample:\n```jsx\n{isLoggedIn ? <Welcome /> : <Login />}',
+      language: 'jsx',
     },
     {
       id: '9',
       front: 'What is event handling in React?',
-      back: 'Event handling in React is similar to handling events in DOM elements, but with camelCase naming convention and passing functions as event handlers rather than strings.\n\nExample:\n```javascript\n<button onClick={handleClick}>\n  Click me\n</button>',
-      language: 'javascript',
+      back: 'Event handling in React is similar to handling events in DOM elements, but with camelCase naming convention and passing functions as event handlers rather than strings.\n\nExample:\n```jsx\n<button onClick={handleClick}>\n  Click me\n</button>',
+      language: 'jsx',
     },
     {
       id: '10',
       front: 'What is a controlled component?',
-      back: "A controlled component is a form element (like input, textarea, or select) whose value is controlled by React state. The component's value is set by state and updates via onChange handlers.\n\nExample:\n```javascript\nconst [inputValue, setInputValue] = useState('');\n<input \n  value={inputValue} \n  onChange={(e) => setInputValue(e.target.value)} \n/>",
-      language: 'javascript',
+      back: "A controlled component is a form element (like input, textarea, or select) whose value is controlled by React state. The component's value is set by state and updates via onChange handlers.\n\nExample:\n```jsx\nconst [inputValue, setInputValue] = useState('');\n<input \n  value={inputValue} \n  onChange={(e) => setInputValue(e.target.value)} \n/>",
+      language: 'jsx',
     },
     {
       id: '11',
       front: 'What is an uncontrolled component?',
-      back: 'An uncontrolled component is a form element where form data is handled by the DOM itself, not by React state. You can use refs to access the DOM element\'s value when needed.\n\nExample:\n```javascript\nconst inputRef = useRef(null);\n<input type="text" ref={inputRef} />\n// Access value: inputRef.current.value',
-      language: 'javascript',
+      back: 'An uncontrolled component is a form element where form data is handled by the DOM itself, not by React state. You can use refs to access the DOM element\'s value when needed.\n\nExample:\n```jsx\nconst inputRef = useRef(null);\n<input type="text" ref={inputRef} />\n// Access value: inputRef.current.value',
+      language: 'jsx',
     },
     {
       id: '12',
       front: 'What are React fragments?',
-      back: 'React fragments let you group a list of children without adding extra nodes to the DOM. Useful when you need to return multiple elements from a component.\n\nExample:\n```javascript\nreturn (\n  <>\n    <ChildA />\n    <ChildB />\n  </>\n);',
-      language: 'javascript',
+      back: 'React fragments let you group a list of children without adding extra nodes to the DOM. Useful when you need to return multiple elements from a component.\n\nExample:\n```jsx\nreturn (\n  <>\n    <ChildA />\n    <ChildB />\n  </>\n);',
+      language: 'jsx',
     },
     {
       id: '13',
@@ -88,8 +88,8 @@ const react_beginner: {
     {
       id: '14',
       front: 'What is the Context API?',
-      back: "Context API provides a way to pass data through the component tree without having to pass props down manually at every level. It's useful for global data like themes, user authentication, etc.\n\nExample:\n```javascript\nconst ThemeContext = React.createContext('light');\n<ThemeContext.Provider value=\"dark\">\n  <ChildComponent />\n</ThemeContext.Provider>",
-      language: 'javascript',
+      back: "Context API provides a way to pass data through the component tree without having to pass props down manually at every level. It's useful for global data like themes, user authentication, etc.\n\nExample:\n```jsx\nconst ThemeContext = React.createContext('light');\n<ThemeContext.Provider value=\"dark\">\n  <ChildComponent />\n</ThemeContext.Provider>",
+      language: 'jsx',
     },
     {
       id: '15',
@@ -118,8 +118,8 @@ const react_beginner: {
     {
       id: '19',
       front: 'What is React.memo()?',
-      back: 'React.memo() is a higher-order component that memoizes a functional component. It prevents unnecessary re-renders by comparing previous props with new props.\n\nExample:\n```javascript\nconst MyComponent = React.memo(function MyComponent(props) {\n  /* render using props */\n});',
-      language: 'javascript',
+      back: 'React.memo() is a higher-order component that memoizes a functional component. It prevents unnecessary re-renders by comparing previous props with new props.\n\nExample:\n```jsx\nconst MyComponent = React.memo(function MyComponent(props) {\n  /* render using props */\n});',
+      language: 'jsx',
     },
     {
       id: '20',

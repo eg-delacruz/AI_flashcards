@@ -82,7 +82,7 @@ const FlashcardApp = () => {
 
   return (
     // Main Container
-    <div className='flex flex-col h-screen bg-slate-950 text-slate-100 font-sans overflow-hidden'>
+    <div className='flex flex-col h-screen bg-slate-950 text-slate-100 overflow-hidden'>
       {/* Header - Full Width */}
       <header className='w-full z-10 bg-slate-950'>
         <div className='flex items-center justify-between px-4 py-1.5 max-w-2xl mx-auto'>
