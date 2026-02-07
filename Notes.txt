@@ -2,15 +2,69 @@ Project name:
 - AI Interview Flashcards
 
 Notes:
-- Focus on interview niche and technical questions
-    -> Othes don't display code properly, so I shoud try to add colors to it? -> carbon.now.shoud
-    -> Use client-side syntax lib:
-        + react-syntax-highlighter
-        + highlight.js
-    -> Use @monaco-editor/react -> create flashcards with code as in VS code
-    -> toggle between normal flashcards or code flashcards
+- DB collections:
 
-- Config options:
+  + User {
+    _id,
+    email, -> check if the google auth library returns this
+    userName, -> check if the google auth library returns this
+    password, -> Needed in the DB or does the google library hanble it?
+    avatar?,
+    preferences {
+      dailyReviewGoal: number,
+      notifications: bool,
+    },
+    stats {
+      totalStudyTime: number (min),
+      streak,
+      lastActive,
+      totalCardsMastered,
+      createdAt,
+      updatedAt
+    }
+  }
+
+  + Deck {
+    _id,
+    userId,
+    title,
+    description,
+    language,
+    tags, -> to search for decks, tweak the prompt for the AI when generating a new deck
+    isPublic,
+    cardCount,
+    stats { -> create only local? But what about synching user data with database to use in multiple devices?. All stats have type number
+      mastered,
+      familiar,
+      learning, -> assigned when user hits Don't know
+      totalReviews,
+      avgScore
+    },
+    settings {
+      study_mode: whole_deck_in_order | dont_know_&_familiar | any_20_random | whole_deck_shuffled | 20_dont_know_&_familiar,
+    },
+    createdAt,
+    updatedAt,
+    createdBy
+  }
+
+  + Card {
+    _id,
+    deckId,
+    userId, -> create the attribute but I don't see much use to it now. Make sure to return it to the client without (unless it is needed for something)
+    front,
+    back,
+    language,
+    stats { -> local only? Consider sync strategy befory deciding this
+      totalReviews,
+      lastResp: dont_know | familiar | mastered | undefined,
+      masteredCount,
+      familiarCount,
+      dontKnowCount,
+    }
+    createdAt,
+    createdBy
+  }
 
 - V1:
     - Home view -> Display decks + create deck btn (display all decks in db for now)
@@ -29,6 +83,7 @@ TODO:
 - Check how to handle cache to avoid refetch every time a user loads the page
     -> Only store the cards in the deck once! Store them in the user. I think the analytics should be created locally.
     -> Check how the "Tarjetas" app does it
+- Implement card generation with AI -> use the repo of midu to use multiple AIs and not use just a single one to avoid reaching a limit too fast
 
 
 ///////////////////////////
