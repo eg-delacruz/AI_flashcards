@@ -21,9 +21,6 @@ Notes:
 
 
 TODO:
-- Refine the current prototype
-- Investigate what elements should a design system have and how to store them in the styles of the Project
-- Create the design system
 - Define all the infos a deck should store
 - define DB collections
 - Login

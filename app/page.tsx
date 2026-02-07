@@ -17,6 +17,13 @@ import { motion } from 'motion/react';
 import CodeDisplay from '@/components/CodeDisplay/CodeDisplay';
 import { react_beginner } from '@/data/decks';
 
+// TODO: we are importing react-syntax-highlighter, but it is also done in CodeDisplay by using dynamic(). Since it is already imported here, will the dynamic import it again? Shouldn't there be a way to check if it's already loaded before trying to load it again?
+
+/* 
+NOTE: was thinking of:
+1. Prerender the answer just after the front face renders, BUT, the current performance is already good enough and, it could be that the user never flips the card but just continues, so maybe not.
+2. Prerender several cards in the future after the current in the background, including the answer, but also maybe not needed, since the curret performance is fine.
+*/
 const FlashcardApp = () => {
   // Preload the syntax highlighter library
   const preloadSyntaxHighlighter = async () => {
@@ -35,6 +42,7 @@ const FlashcardApp = () => {
 
     return () => clearTimeout(timer);
   }, []);
+
   const [cards] = useState(react_beginner.cards);
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -82,41 +90,41 @@ const FlashcardApp = () => {
 
   return (
     // Main Container
-    <div className='flex flex-col h-screen bg-slate-950 text-slate-100 overflow-hidden'>
+    <div className='flex flex-col h-screen text-text overflow-hidden'>
       {/* Header - Full Width */}
-      <header className='w-full z-10 bg-slate-950'>
+      <header className='w-full z-10 bg-page'>
         <div className='flex items-center justify-between px-4 py-1.5 max-w-2xl mx-auto'>
           <button
             onClick={handleBack}
-            className='p-2 hover:bg-slate-800 rounded-full transition-colors'
+            className='p-2 hover:bg-surface-muted rounded-round transition-colors'
           >
             <ChevronLeft size={24} />
           </button>
           <div className='flex gap-4'>
-            <button className='p-2 hover:bg-slate-800 rounded-full transition-colors'>
-              <Trash2 size={20} className='text-slate-400' />
+            <button className='p-2 hover:bg-surface-muted rounded-round transition-colors'>
+              <Trash2 size={20} className='text-text-muted' />
             </button>
-            <button className='p-2 hover:bg-slate-800 rounded-full transition-colors'>
-              <Pencil size={20} className='text-slate-400' />
+            <button className='p-2 hover:bg-surface-muted rounded-round transition-colors'>
+              <Pencil size={20} className='text-text-muted' />
             </button>
-            <button className='p-2 hover:bg-slate-800 rounded-full transition-colors'>
-              <Settings size={20} className='text-slate-400' />
+            <button className='p-2 hover:bg-surface-muted rounded-round transition-colors'>
+              <Settings size={20} className='text-text-muted' />
             </button>
           </div>
         </div>
       </header>
 
       {/* Progress Section - Full Width */}
-      <div className='w-full z-10 bg-slate-950'>
+      <div className='w-full z-10 bg-page'>
         <div className='px-4 py-2 pb-0 max-w-2xl mx-auto'>
-          <div className='w-full bg-slate-800 h-1.5 rounded-full overflow-hidden'>
+          <div className='w-full bg-surface-muted h-1.5 rounded-round overflow-hidden'>
             <div
-              className='bg-indigo-500 h-full transition-all duration-300'
+              className='bg-accent h-full transition-all duration-300'
               style={{ width: `${progressPercentage}%` }}
             />
           </div>
           <div className='text-right mt-1'>
-            <span className='text-xs font-mono text-slate-500'>
+            <span className='text-xs font-mono text-text-subtle'>
               {currentIndex + 1} | {totalCards}
             </span>
           </div>
@@ -124,7 +132,7 @@ const FlashcardApp = () => {
       </div>
 
       {/* Main Flashcard Area */}
-      <main className='grow flex justify-center items-center w-full overflow-hidden bg-slate-950 p-4 pt-2'>
+      <main className='grow flex justify-center items-center w-full overflow-hidden bg-page p-4 pt-2'>
         <div className='w-full max-w-md h-full'>
           {/* AnimatePresence enables exit animations when currentIndex changes */}
           <AnimatePresence mode='wait'>
@@ -138,9 +146,9 @@ const FlashcardApp = () => {
               className='h-full'
             >
               {/* The Card Frame (Relative container for floating elements) */}
-              <div className='h-full bg-slate-900 border border-slate-800 rounded-md shadow-2xl relative flex flex-col'>
+              <div className='h-full bg-surface border border-border rounded-card shadow-2xl relative flex flex-col'>
                 {/* 1. Floating Front/Back Indicator (Higher Z-Index) */}
-                <span className='absolute -top-2 left-3 text-[10px] font-extrabold tracking-[0.2em] z-20 pointer-events-none rounded-sm px-2 py-1 backdrop-blur-sm border-slate-700 bg-slate-500'>
+                <span className='absolute -top-2 left-3 text-[10px] font-extrabold tracking-[0.2em] z-20 pointer-events-none rounded-badge px-2 py-1 backdrop-blur-sm border-border-strong bg-surface-strong'>
                   {isFlipped ? 'BACK' : 'FRONT'}
                 </span>
 
@@ -149,11 +157,11 @@ const FlashcardApp = () => {
                   <button
                     onClick={handleFlip}
                     onMouseEnter={preloadSyntaxHighlighter}
-                    className='bg-slate-800 border-2 border-slate-700 p-3 py-2 rounded-xl hover:bg-slate-700 hover:border-indigo-500 transition-all shadow-lg group hover:cursor-pointer'
+                    className='bg-surface-muted border-2 border-border-strong p-3 py-2 rounded-control hover:bg-surface-hover hover:border-accent transition-all shadow-lg group hover:cursor-pointer'
                   >
                     <ArrowRightLeft
                       size={22}
-                      className='text-indigo-400 group-hover:rotate-180 transition-transform duration-500'
+                      className='text-accent-soft group-hover:rotate-180 transition-transform duration-500'
                     />
                   </button>
                 </div>
@@ -182,7 +190,7 @@ const FlashcardApp = () => {
                             />
                           </div>
                         ) : (
-                          <p className='text-3xl text-center leading-relaxed font-medium'>
+                          <p className='text-3xl text-center leading-relaxed font-sans'>
                             {currentCard.front}
                           </p>
                         )}
@@ -197,44 +205,44 @@ const FlashcardApp = () => {
       </main>
 
       {/* Answer Buttons Footer - Full Width */}
-      <footer className='w-full z-10 bg-slate-950'>
+      <footer className='w-full z-10 bg-page'>
         <div className='max-w-md mx-auto'>
           <div className='grid grid-cols-3 gap-1 p-2'>
             <button
               onClick={handleNext}
-              className='flex flex-col items-center justify-center py-3 px-2 hover:bg-red-500/10 rounded-xl transition-colors group active:scale-95'
+              className='flex flex-col items-center justify-center py-3 px-2 hover:bg-danger/10 rounded-control transition-colors group active:scale-95'
             >
               <Frown
                 size={26}
-                className='text-red-500 mb-2 group-hover:scale-110 transition-transform'
+                className='text-danger mb-2 group-hover:scale-110 transition-transform'
               />
-              <span className='text-[10px] uppercase font-bold text-slate-400 tracking-wider'>
+              <span className='text-[10px] uppercase font-bold text-text-muted tracking-wider'>
                 Don&apos;t know
               </span>
             </button>
 
             <button
               onClick={handleNext}
-              className='flex flex-col items-center justify-center py-3 px-2 hover:bg-yellow-500/10 rounded-xl transition-colors group active:scale-95'
+              className='flex flex-col items-center justify-center py-3 px-2 hover:bg-warning/10 rounded-control transition-colors group active:scale-95'
             >
               <Meh
                 size={26}
-                className='text-yellow-500 mb-2 group-hover:scale-110 transition-transform'
+                className='text-warning mb-2 group-hover:scale-110 transition-transform'
               />
-              <span className='text-[10px] uppercase font-bold text-slate-400 tracking-wider'>
+              <span className='text-[10px] uppercase font-bold text-text-muted tracking-wider'>
                 Familiar
               </span>
             </button>
 
             <button
               onClick={handleNext}
-              className='flex flex-col items-center justify-center py-3 px-2 hover:bg-emerald-500/10 rounded-xl transition-colors group active:scale-95'
+              className='flex flex-col items-center justify-center py-3 px-2 hover:bg-success/10 rounded-control transition-colors group active:scale-95'
             >
               <Smile
                 size={26}
-                className='text-emerald-500 mb-2 group-hover:scale-110 transition-transform'
+                className='text-success mb-2 group-hover:scale-110 transition-transform'
               />
-              <span className='text-[10px] uppercase font-bold text-slate-400 tracking-wider'>
+              <span className='text-[10px] uppercase font-bold text-text-muted tracking-wider'>
                 Mastered
               </span>
             </button>

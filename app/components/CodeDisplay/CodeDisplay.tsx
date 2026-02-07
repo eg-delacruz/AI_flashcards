@@ -113,6 +113,7 @@ const CodeDisplay = ({
             >
               {String(children).replace(/\n$/, '')}
             </SyntaxHighlighter>
+            {/* :global(code) means: Do NOT add scope hash (e.g. class-name.jsx-abc123) but target actual code elements globally inside this component, so that the styles apply to the code elements used in the syntax highlighter library, since those won't have the scope hash.*/}
             <style jsx>{`
               .code-block-wrapper :global(code) {
                 background: transparent !important;

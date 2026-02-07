@@ -1,10 +1,49 @@
 @import 'tailwindcss';
 
+/*
+*/
 @theme {
-  --font-family-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-family-mono: var(--font-geist-mono), ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
-}
+  --font-sans: var(--font-fira-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans-condensed:
+    var(--font-fira-sans-condensed), ui-sans-serif, system-ui, sans-serif;
 
-body {
-  font-family: var(--font-family-sans);
+  /* Colors used in page.tsx */
+  /* Page + surfaces */
+  --color-page: var(--color-slate-950); /* App background (full-page areas) */
+  --color-surface: var(
+    --color-slate-900
+  ); /* Primary elevated surfaces (cards/panels) */
+  --color-surface-muted: var(
+    --color-slate-800
+  ); /* Subtle surfaces (headers, tracks, containers) */
+  --color-surface-hover: var(
+    --color-slate-700
+  ); /* Hover state for muted surfaces */
+  --color-surface-strong: var(
+    --color-slate-500
+  ); /* Small strong labels/badges */
+
+  /* Borders */
+  --color-border: var(--color-slate-800); /* Default border on dark surfaces */
+  --color-border-strong: var(
+    --color-slate-700
+  ); /* Emphasized borders (badges, controls) */
+
+  /* Text */
+  --color-text: var(--color-slate-100); /* Primary readable text */
+  --color-text-muted: var(
+    --color-slate-400
+  ); /* Secondary text, icons, labels */
+  --color-text-subtle: var(--color-slate-500); /* Tertiary/auxiliary text */
+
+  /* Accents + status */
+  --color-accent: var(
+    --color-indigo-500
+  ); /* Primary action/accent (progress, focus) */
+  --color-accent-soft: var(
+    --color-indigo-400
+  ); /* Accent for icons or softer emphasis */
+  --color-danger: var(--color-red-500); /* Destructive/negative state */
+  --color-warning: var(--color-yellow-500); /* Caution/neutral state */
+  --color-success: var(--color-emerald-500); /* Success/positive state */
 }
