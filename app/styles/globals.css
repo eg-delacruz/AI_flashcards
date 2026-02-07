@@ -7,7 +7,8 @@
   --font-sans-condensed:
     var(--font-fira-sans-condensed), ui-sans-serif, system-ui, sans-serif;
 
-  /* Colors used in page.tsx */
+  /* Colors*/
+
   /* Page + surfaces */
   --color-page: var(--color-slate-950); /* App background (full-page areas) */
   --color-surface: var(

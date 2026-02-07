@@ -96,18 +96,18 @@ const FlashcardApp = () => {
         <div className='flex items-center justify-between px-4 py-1.5 max-w-2xl mx-auto'>
           <button
             onClick={handleBack}
-            className='p-2 hover:bg-surface-muted rounded-round transition-colors'
+            className='p-2 hover:bg-surface-muted rounded-full transition-colors'
           >
             <ChevronLeft size={24} />
           </button>
           <div className='flex gap-4'>
-            <button className='p-2 hover:bg-surface-muted rounded-round transition-colors'>
+            <button className='p-2 hover:bg-surface-muted rounded-full transition-colors'>
               <Trash2 size={20} className='text-text-muted' />
             </button>
-            <button className='p-2 hover:bg-surface-muted rounded-round transition-colors'>
+            <button className='p-2 hover:bg-surface-muted rounded-full transition-colors'>
               <Pencil size={20} className='text-text-muted' />
             </button>
-            <button className='p-2 hover:bg-surface-muted rounded-round transition-colors'>
+            <button className='p-2 hover:bg-surface-muted rounded-full transition-colors'>
               <Settings size={20} className='text-text-muted' />
             </button>
           </div>
@@ -117,7 +117,7 @@ const FlashcardApp = () => {
       {/* Progress Section - Full Width */}
       <div className='w-full z-10 bg-page'>
         <div className='px-4 py-2 pb-0 max-w-2xl mx-auto'>
-          <div className='w-full bg-surface-muted h-1.5 rounded-round overflow-hidden'>
+          <div className='w-full bg-surface-muted h-1.5 rounded-full overflow-hidden'>
             <div
               className='bg-accent h-full transition-all duration-300'
               style={{ width: `${progressPercentage}%` }}
@@ -146,9 +146,9 @@ const FlashcardApp = () => {
               className='h-full'
             >
               {/* The Card Frame (Relative container for floating elements) */}
-              <div className='h-full bg-surface border border-border rounded-card shadow-2xl relative flex flex-col'>
+              <div className='h-full bg-surface border border-border rounded-md shadow-2xl relative flex flex-col'>
                 {/* 1. Floating Front/Back Indicator (Higher Z-Index) */}
-                <span className='absolute -top-2 left-3 text-[10px] font-extrabold tracking-[0.2em] z-20 pointer-events-none rounded-badge px-2 py-1 backdrop-blur-sm border-border-strong bg-surface-strong'>
+                <span className='absolute -top-2 left-3 text-[10px] font-extrabold tracking-[0.2em] z-20 pointer-events-none rounded-sm px-2 py-1 backdrop-blur-sm border-border-strong bg-surface-strong'>
                   {isFlipped ? 'BACK' : 'FRONT'}
                 </span>
 
@@ -157,7 +157,7 @@ const FlashcardApp = () => {
                   <button
                     onClick={handleFlip}
                     onMouseEnter={preloadSyntaxHighlighter}
-                    className='bg-surface-muted border-2 border-border-strong p-3 py-2 rounded-control hover:bg-surface-hover hover:border-accent transition-all shadow-lg group hover:cursor-pointer'
+                    className='bg-surface-muted border-2 border-border-strong p-3 py-2 rounded-xl hover:bg-surface-hover hover:border-accent transition-all shadow-lg group hover:cursor-pointer'
                   >
                     <ArrowRightLeft
                       size={22}
@@ -210,7 +210,7 @@ const FlashcardApp = () => {
           <div className='grid grid-cols-3 gap-1 p-2'>
             <button
               onClick={handleNext}
-              className='flex flex-col items-center justify-center py-3 px-2 hover:bg-danger/10 rounded-control transition-colors group active:scale-95'
+              className='flex flex-col items-center justify-center py-3 px-2 hover:bg-danger/10 rounded-xl transition-colors group active:scale-95'
             >
               <Frown
                 size={26}
@@ -220,10 +220,9 @@ const FlashcardApp = () => {
                 Don&apos;t know
               </span>
             </button>
-
             <button
               onClick={handleNext}
-              className='flex flex-col items-center justify-center py-3 px-2 hover:bg-warning/10 rounded-control transition-colors group active:scale-95'
+              className='flex flex-col items-center justify-center py-3 px-2 hover:bg-warning/10 rounded-xl transition-colors group active:scale-95'
             >
               <Meh
                 size={26}
@@ -236,7 +235,7 @@ const FlashcardApp = () => {
 
             <button
               onClick={handleNext}
-              className='flex flex-col items-center justify-center py-3 px-2 hover:bg-success/10 rounded-control transition-colors group active:scale-95'
+              className='flex flex-col items-center justify-center py-3 px-2 hover:bg-success/10 rounded-xl transition-colors group active:scale-95'
             >
               <Smile
                 size={26}
