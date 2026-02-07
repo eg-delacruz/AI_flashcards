@@ -27,3 +27,233 @@ TODO:
     - read NextJS docs regarding authentication -> https://nextjs.org/docs/app/guides/authentication
     - Only implement login with google and with user and password
 - Check how to handle cache to avoid refetch every time a user loads the page
+    -> Only store the cards in the deck once! Store them in the user. I think the analytics should be created locally.
+    -> Check how the "Tarjetas" app does it
+
+
+///////////////////////////
+//     Future features   //
+///////////////////////////
+
+/////////////////////////////////// Hybrid sync strategy:
+-> Use the following information as a prompt to explain to the AI (or just ask the AI what I want to achieve and let it create me a plan)
+
+Flashcards App - Future Sync System Design
+Core Problem Statement
+Enable offline-first functionality with multi-device sync for user's learning progress (decks, cards, and SRS data) while minimizing API calls and handling conflicts.
+
+Architecture Overview
+Hybrid sync system combining periodic snapshots with real-time change tracking for efficient data synchronization across devices.
+
+Collections Schema
+Primary Collections (Existing)
+User - User profile and preferences
+
+Deck - Flashcard collections
+
+Card - Individual flashcards with SRS data
+
+ReviewSession - Learning activity records
+
+Sync-Specific Collections (To Add)
+javascript
+// 1. Sync State Tracker
+UserSyncState {
+  userId: ObjectId,
+  lastSync: Date,
+  serverVersion: number, // Monotonically increasing
+  deviceStates: [{
+    deviceId: string,    // Unique per device
+    lastSyncVersion: number,
+    lastSeen: Date
+  }]
+}
+
+// 2. Change Log (For incremental sync)
+ChangeLog {
+  userId: ObjectId,
+  version: number,      // Tied to UserSyncState.serverVersion
+  timestamp: Date,
+  changes: [{
+    collection: 'Card' | 'Deck' | 'ReviewSession',
+    id: ObjectId,
+    operation: 'C' | 'U' | 'D', // Create, Update, Delete
+    data: {}           // Document snapshot
+  }]
+}
+
+// 3. Periodic Backup (For catch-up/recovery)
+UserBackup {
+  userId: ObjectId,
+  version: number,     // Server version when created
+  timestamp: Date,
+  dataHash: string,    // For change detection
+  compressedData: Buffer, // gzipped JSON
+  retention: 'daily' | 'weekly' | 'monthly'
+}
+Sync Flow Logic
+Client-Side (Local First)
+Local Storage: IndexedDB/AsyncStorage for offline work
+
+Change Queue: Buffer all modifications locally
+
+Sync Trigger: App background, network change, or timer
+
+Conflict Strategy: Last-write-wins for MVP, merge for complex
+
+Server-Side
+Incremental Changes: Serve only delta since client's last version
+
+Backup Generation: Create compressed snapshots after X changes
+
+Conflict Detection: Flag simultaneous edits on same document
+
+Version Management: Linear versioning for ordering
+
+Key Algorithms
+1. Change Detection
+javascript
+// Only sync if changes exceed threshold
+if (localChanges > 10 || timeSinceLastSync > 15min) {
+  triggerSync();
+}
+2. Backup Generation
+Generate when: Change count > 50 OR daily cron
+
+Include: Decks, Cards with SRS data, User stats
+
+Exclude: Historical review sessions (keep recent only)
+
+Compress: gzip reduces size by ~80%
+
+3. Differential Sync
+javascript
+// Client request
+{
+  userId: string,
+  deviceId: string,
+  lastKnownVersion: number,
+  pendingChanges: Array<SyncOperation>
+}
+
+// Server response
+{
+  newVersion: number,
+  changes: Array<Change>,  // Only new changes
+  conflicts: Array<Conflict>,
+  fullBackupAvailable: boolean
+}
+Stack Additions Required
+Frontend (Next.js)
+IndexedDB: dexie or idb for local storage
+
+State Management: React Query for cache/sync
+
+Network Detection: react-use for online/offline
+
+Compression: pako for gzip
+
+Backend (Node.js)
+Change Tracking: Version middleware on Mongoose hooks
+
+Compression: zlib for gzip backups
+
+WebSocket: socket.io for real-time (optional)
+
+Cron Jobs: node-cron for backup generation
+
+Database (MongoDB)
+TTL Indexes: Auto-delete old ChangeLog entries
+
+Partial Indexes: Optimize sync queries
+
+Change Streams: For real-time updates (alternative)
+
+Implementation Phases
+Phase 1: Basic Offline (MVP)
+Local storage only
+
+Manual export/import JSON
+
+No conflict handling
+
+Phase 2: Simple Sync
+Background sync on app start/close
+
+One-way sync (server authoritative)
+
+Simple backup collection
+
+Phase 3: Advanced Sync (This Design)
+Multi-device with conflict resolution
+
+Incremental sync with change log
+
+Compressed backups
+
+Real-time updates optional
+
+Performance Optimizations
+Data Minimization
+Sync only SRS fields for Cards (not full content unless changed)
+
+Exclude historical data from frequent sync
+
+Compress backups with gzip
+
+Query Optimization
+javascript
+// Indexes needed:
+UserSyncState: { userId: 1 }
+ChangeLog: { userId: 1, version: 1 }
+UserBackup: { userId: 1, version: -1 }
+Network Efficiency
+Batch changes in single request
+
+Use compression for backup downloads
+
+Exponential backoff for retries
+
+Conflict Resolution Strategies
+Simple (MVP)
+Last write wins based on timestamp
+
+Client override for Card SRS data
+
+Server override for Deck structure
+
+Advanced
+Merge algorithm for SRS intervals
+
+Manual resolution for content conflicts
+
+Version vectors for causal ordering
+
+Testing Considerations
+Network Conditions: Simulate offline, flaky connections
+
+Conflict Scenarios: Simultaneous edits on multiple devices
+
+Data Loss: Recovery from corrupted local state
+
+Scale: Many small vs few large decks
+
+Future Extensions
+Sharing Sync: Sync shared/public decks
+
+Study Session Sync: Real-time collaborative studying
+
+Analytics Sync: Learning insights across devices
+
+Migration: Version upgrades with data transformation
+
+Key Decision Points
+Conflict Strategy: Simple vs complex resolution
+
+Sync Frequency: Real-time vs periodic
+
+Storage Limit: How much history to keep
+
+Compression Level: Speed vs size trade-off
+
+When implementing: Start with Phase 1, add backup collection, then incrementally add change tracking. Test sync logic extensively with simulated network failures.
