@@ -78,11 +78,10 @@ Notes:
     - Login
     - create new deck view (for admin only)
         -> generate whole deck or generate just the answer
+    - Do not mess with storing data locally. Go ahead as if it was a normal api fetching app using SSR
 
 
 TODO:
-- Define all the infos a deck should store
-- define DB collections
 - Login
     - read NextJS docs regarding authentication -> https://nextjs.org/docs/app/guides/authentication
     - Only implement login with google and with user and password

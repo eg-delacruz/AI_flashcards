@@ -4,7 +4,9 @@ Use this template to generate flashcard decks for any programming language or to
 
 ---
 
-## Base Prompt to create cards for a new deck
+## Base Prompt Template (Reusable)
+
+Use this template for any new deck generation prompt. You can copy/paste it and then add a dedicated example section below.
 
 ```
 Consider the following JSON format for a programming flashcard (AI-generated fields only):
@@ -39,14 +41,103 @@ Based on this format, create a complete deck with [NUMBER] questions and answers
 Use this Deck structure for the output (AI-generated fields only):
 
 {
-  title: 'React Beginner',
-  description: 'Core React concepts and terminology for newcomers.',
-  language: 'javascript',
-  tags: ['react', 'frontend', 'javascript'],
+  title: '[DECK TITLE]',
+  description: '[DECK DESCRIPTION]',
+  language: '[PRIMARY LANGUAGE]',
+  tags: ['tag-1', 'tag-2', 'tag-3'],
   cards: [/* Card objects with front/back/language only */],
 }
 
 Ensure each card:
+- Has a clear, concise question in 'front'
+- Has a detailed explanation with relevant code examples in 'back'
+- Uses the correct code fence language matching the actual code syntax
+- Has the correct 'language' property
+- Uses consistent formatting and style throughout
+```
+
+---
+
+## Full Deck Prompt Template (Testing / Manual Generation)
+
+Use this template when you want the AI to generate a complete deck object with all fields (including ids and stats). This is intended for manual testing or quick seed data creation.
+
+```
+Consider the following JSON format for a programming flashcard (FULL fields):
+
+{
+  _id: 'card_001',
+  deckId: 'deck_001',
+  userId: 'user_001',
+  front: 'What is useState?',
+  back: `useState is a React hook for managing state in functional components.
+
+Example:
+\`\`\`javascript
+const [count, setCount] = useState(0);
+\`\`\`
+
+You can also initialize with a function:
+\`\`\`javascript
+const [state, setState] = useState(() => expensiveComputation());
+\`\`\``,
+  language: 'javascript',
+  stats: {
+    totalReviews: 0,
+    lastResp: undefined,
+    masteredCount: 0,
+    familiarCount: 0,
+    dontKnowCount: 0,
+  },
+  createdAt: '2026-02-01T10:00:00.000Z',
+  createdBy: 'user_001',
+}
+
+IMPORTANT FORMATTING RULES:
+1. Use template literals (backticks) for the 'back' property when including code blocks
+2. Escape code fence backticks inside template literals: \`\`\`
+3. The code fence language (e.g., ```python```, ```javascript```) must exactly match the actual code syntax
+4. The 'language' property must match the primary language used in the code examples
+
+LANGUAGE-SPECIFIC INSTRUCTIONS:
+[INSERT LANGUAGE-SPECIFIC RULES HERE - See examples below]
+
+Based on this format, create a complete deck with [NUMBER] questions and answers related to [TOPIC]. The questions should be of a [LEVEL] level.
+
+Use this Deck structure for the output (FULL fields):
+
+{
+  _id: 'deck_001',
+  userId: 'user_001',
+  title: '[DECK TITLE]',
+  description: '[DECK DESCRIPTION]',
+  language: '[PRIMARY LANGUAGE]',
+  cards: [/* FULL Card objects */],
+  tags: ['tag-1', 'tag-2', 'tag-3'],
+  isPublic: true,
+  cardCount: [NUMBER],
+  stats: {
+    mastered: 0,
+    familiar: 0,
+    learning: 0,
+    totalReviews: 0,
+    avgScore: 0,
+  },
+  settings: {
+    study_mode: 'whole_deck_in_order',
+  },
+  createdAt: '2026-02-01T10:00:00.000Z',
+  updatedAt: '2026-02-01T10:00:00.000Z',
+  createdBy: 'user_001',
+}
+
+Ensure each card:
+- Has a unique `_id`
+- Uses a consistent `deckId` for all cards in the same deck
+- Uses a consistent `userId` for all cards in the same deck
+- Includes full `stats` with number values (use 0 for new data)
+- Has valid ISO timestamps for `createdAt`
+- Uses a consistent `createdBy` value
 - Has a clear, concise question in 'front'
 - Has a detailed explanation with relevant code examples in 'back'
 - Uses the correct code fence language matching the actual code syntax
@@ -117,6 +208,15 @@ LANGUAGE-SPECIFIC INSTRUCTIONS:
 - If multiple languages are shown, use the most relevant one as the language property
 ```
 
+### For Tailwind CSS
+
+```
+LANGUAGE-SPECIFIC INSTRUCTIONS:
+- Use ```html``` for code blocks showing Tailwind classes in HTML elements
+- Use ```css``` if showing Tailwind classes in a CSS context (e.g., @apply)
+- Set language property to 'html' or 'css' based on the context of the code examples
+```
+
 ---
 
 ## Usage Template
@@ -129,8 +229,18 @@ Fill in the placeholders:
 
 ---
 
-## Example Complete Prompt
+## Examples
 
+Add any number of examples here. Each example should include its prompt and a short explanation of what it covers.
+
+### Example 1 — Python Fundamentals (Beginner)
+
+**Explanation:**
+- Topic: Python fundamentals
+- Level: beginner
+- Language rules: Python-only code blocks
+
+**Prompt:**
 ```
 Consider the following JSON format for a programming flashcard (AI-generated fields only):
 

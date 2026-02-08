@@ -32,7 +32,9 @@ export default function RootLayout({
       lang='en'
       className={`${firaSans.variable} ${firaSansCondensed.variable}`}
     >
-      <body className='antialiased font-sans bg-page'>{children}</body>
+      <body className='antialiased font-sans bg-page text-text'>
+        {children}
+      </body>
     </html>
   );
 }
