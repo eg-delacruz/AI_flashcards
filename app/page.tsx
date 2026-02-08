@@ -17,8 +17,6 @@ import { motion } from 'motion/react';
 import CodeDisplay from '@/components/CodeDisplay/CodeDisplay';
 import { react_beginner } from '@/data/decks';
 
-// TODO: we are importing react-syntax-highlighter, but it is also done in CodeDisplay by using dynamic(). Since it is already imported here, will the dynamic import it again? Shouldn't there be a way to check if it's already loaded before trying to load it again?
-
 /* 
 NOTE: was thinking of:
 1. Prerender the answer just after the front face renders, BUT, the current performance is already good enough and, it could be that the user never flips the card but just continues, so maybe not.

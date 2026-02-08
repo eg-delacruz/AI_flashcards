@@ -4,13 +4,12 @@ Use this template to generate flashcard decks for any programming language or to
 
 ---
 
-## Base Prompt
+## Base Prompt to create cards for a new deck
 
 ```
-Consider the following JSON format for a programming flashcard:
+Consider the following JSON format for a programming flashcard (AI-generated fields only):
 
 {
-  id: 1,
   front: 'What is useState?',
   back: `useState is a React hook for managing state in functional components.
 
@@ -35,10 +34,19 @@ IMPORTANT FORMATTING RULES:
 LANGUAGE-SPECIFIC INSTRUCTIONS:
 [INSERT LANGUAGE-SPECIFIC RULES HERE - See examples below]
 
-Based on this format, create a complete array/deck with [NUMBER] questions and answers related to [TOPIC]. The questions should be of a [LEVEL] level.
+Based on this format, create a complete deck with [NUMBER] questions and answers related to [TOPIC]. The questions should be of a [LEVEL] level.
+
+Use this Deck structure for the output (AI-generated fields only):
+
+{
+  title: 'React Beginner',
+  description: 'Core React concepts and terminology for newcomers.',
+  language: 'javascript',
+  tags: ['react', 'frontend', 'javascript'],
+  cards: [/* Card objects with front/back/language only */],
+}
 
 Ensure each card:
-- Has a unique sequential id (starting from 1)
 - Has a clear, concise question in 'front'
 - Has a detailed explanation with relevant code examples in 'back'
 - Uses the correct code fence language matching the actual code syntax
@@ -124,10 +132,9 @@ Fill in the placeholders:
 ## Example Complete Prompt
 
 ```
-Consider the following JSON format for a programming flashcard:
+Consider the following JSON format for a programming flashcard (AI-generated fields only):
 
 {
-  id: 1,
   front: 'What is a list comprehension in Python?',
   back: `A list comprehension provides a concise way to create lists based on existing lists or iterables.
 
@@ -156,10 +163,19 @@ LANGUAGE-SPECIFIC INSTRUCTIONS:
 - Set language property to 'python'
 - Include proper Python syntax (indentation, type hints if relevant)
 
-Based on this format, create a complete array/deck with 20 questions and answers related to Python fundamentals. The questions should be of a beginner level.
+Based on this format, create a complete deck with 20 questions and answers related to Python fundamentals. The questions should be of a beginner level.
+
+Use this Deck structure for the output (AI-generated fields only):
+
+{
+  title: 'Python Fundamentals',
+  description: 'Beginner-friendly Python concepts and syntax.',
+  language: 'python',
+  tags: ['python', 'basics'],
+  cards: [/* Card objects with front/back/language only */],
+}
 
 Ensure each card:
-- Has a unique sequential id (starting from 1)
 - Has a clear, concise question in 'front'
 - Has a detailed explanation with relevant code examples in 'back'
 - Uses the correct code fence language matching the actual code syntax

@@ -30,6 +30,12 @@ Notes:
     title,
     description,
     language,
+    cards: {
+    id: string;
+    front: string;
+    back: string;
+    language: string;
+  }[],
     tags, -> to search for decks, tweak the prompt for the AI when generating a new deck
     isPublic,
     cardCount,
@@ -84,6 +90,9 @@ TODO:
     -> Only store the cards in the deck once! Store them in the user. I think the analytics should be created locally.
     -> Check how the "Tarjetas" app does it
 - Implement card generation with AI -> use the repo of midu to use multiple AIs and not use just a single one to avoid reaching a limit too fast
+
+TODO: - Questions:
+1. Initial thought: I want to store the decks in the IndexedDB of the browser after a deck is fetched for the first, so that next time, the app looks if it is locally. If not, then it would fetch it. But now I have a question. Since the IndexedDB is an api of the browser, this means that I do have to do the fetchin in a client component, right? The fetching cannot occure in a server component, since I first need to check if the deck is in the client already, right? I thought about this approach to reduce api calls and just store the decks in the browser so that it also loads faster. What can you tell me about this?
 
 
 ///////////////////////////
