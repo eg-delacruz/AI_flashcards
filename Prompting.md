@@ -149,6 +149,39 @@ Ensure each card:
 
 ---
 
+## Follow-up Prompt Template (After Full Deck Generation)
+
+Use this prompt in the same AI chat right after you have already generated a full deck using the Full Deck Prompt Template. This avoids pasting the entire template again and keeps the same structure and formatting.
+
+**Generic Prompt:**
+```
+Following the same structure and format, create me a new deck with the following changes:
+
+Number of cards: [NUMBER]
+Topic: [TOPIC]
+Level: [LEVEL]
+
+LANGUAGE-SPECIFIC INSTRUCTIONS:
+[INSERT LANGUAGE-SPECIFIC RULES HERE]
+```
+
+**Example Prompt:**
+```
+Following the same structure and format, create me a new deck with the following changes:
+
+Number of cards: 15
+Topic: Asynchrony in JavaScript. Show all the ways JavaScript has to manage asynchrony and examples.
+Level: Doesn't matter. Include the most important topics and subjects.
+
+LANGUAGE-SPECIFIC INSTRUCTIONS:
+- Use ```javascript``` for all JavaScript code examples
+- Set language property to 'javascript'
+- Use modern JavaScript (ES6+) syntax (const/let, arrow functions, template literals when appropriate)
+- Avoid TypeScript types or annotations
+```
+
+---
+
 ## Language-Specific Instructions Examples
 
 ### For React/JSX
@@ -197,6 +230,16 @@ LANGUAGE-SPECIFIC INSTRUCTIONS:
 - Use ```tsx``` for TypeScript code with JSX/React elements
 - Set language property to match ('typescript' or 'tsx')
 - Include type annotations and interfaces when relevant
+```
+
+### For JavaScript
+
+```
+LANGUAGE-SPECIFIC INSTRUCTIONS:
+- Use ```javascript``` for all JavaScript code examples
+- Set language property to 'javascript'
+- Use modern JavaScript (ES6+) syntax (const/let, arrow functions, template literals when appropriate)
+- Avoid TypeScript types or annotations
 ```
 
 ### For Web Development (HTML/CSS/JS)
