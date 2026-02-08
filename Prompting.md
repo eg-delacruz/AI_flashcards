@@ -32,6 +32,7 @@ IMPORTANT FORMATTING RULES:
 2. Escape code fence backticks inside template literals: \`\`\`
 3. The code fence language (e.g., ```python```, ```javascript```) must exactly match the actual code syntax
 4. The 'language' property must match the primary language used in the code examples
+5. Avoid inline code backticks inside regular text (e.g., don't write `mx-auto` or `flex` in sentences). Spell them out without backticks to prevent invalid HTML nesting.
 
 LANGUAGE-SPECIFIC INSTRUCTIONS:
 [INSERT LANGUAGE-SPECIFIC RULES HERE - See examples below]
@@ -98,6 +99,7 @@ IMPORTANT FORMATTING RULES:
 2. Escape code fence backticks inside template literals: \`\`\`
 3. The code fence language (e.g., ```python```, ```javascript```) must exactly match the actual code syntax
 4. The 'language' property must match the primary language used in the code examples
+5. Avoid inline code backticks inside regular text (e.g., don't write `mx-auto` or `flex` in sentences). Spell them out without backticks to prevent invalid HTML nesting.
 
 LANGUAGE-SPECIFIC INSTRUCTIONS:
 [INSERT LANGUAGE-SPECIFIC RULES HERE - See examples below]
@@ -267,6 +269,7 @@ IMPORTANT FORMATTING RULES:
 2. Escape code fence backticks inside template literals: \`\`\`
 3. The code fence language must exactly match the actual code syntax
 4. The 'language' property must match the primary language used in the code examples
+5. Avoid inline code backticks inside regular text (e.g., don't write `mx-auto` or `flex` in sentences). Spell them out without backticks to prevent invalid HTML nesting.
 
 LANGUAGE-SPECIFIC INSTRUCTIONS:
 - Use ```python``` for all Python code examples

@@ -29,7 +29,7 @@ const tailwind_beginner: Deck = {
       deckId: 'deck_tailwind_beginner_001',
       userId: 'user_001',
       front: 'What is the primary purpose of TailwindCSS?',
-      back: 'TailwindCSS is a utility-first CSS framework that provides low-level utility classes to build custom designs directly in your markup without writing custom CSS.\n\nExample:\n```html\n<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">\n  Click me\n</button>\n```',
+      back: 'TailwindCSS is a utility-first CSS framework that provides low-level utility classes to build custom designs directly in your markup without writing custom CSS.\n\nExample:\n\n```html\n<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">\n  Click me\n</button>\n```',
       language: 'html',
       stats: {
         totalReviews: 0,
@@ -46,7 +46,7 @@ const tailwind_beginner: Deck = {
       deckId: 'deck_tailwind_beginner_001',
       userId: 'user_001',
       front: 'How do you set text color to red-600 in Tailwind?',
-      back: 'Use the `text-{color}-{shade}` utility class. For red-600, you would use `text-red-600`.\n\nExample:\n```html\n<p class="text-red-600">This is error text.</p>\n```\n\nNote: Tailwind uses a predefined color palette with numbered shades (50-900).',
+      back: 'Use the text-{color}-{shade} utility class. For red-600, use text-red-600.\n\nExample:\n\n```html\n<p class="text-red-600">This is error text.</p>\n```\n\nNote: Tailwind uses a predefined color palette with numbered shades (50-900).',
       language: 'html',
       stats: {
         totalReviews: 0,
@@ -63,7 +63,7 @@ const tailwind_beginner: Deck = {
       deckId: 'deck_tailwind_beginner_001',
       userId: 'user_001',
       front: 'What utility class adds padding on all sides?',
-      back: 'The `p-{size}` class adds padding on all sides. The size can be a number (0-96), `px`, or named sizes like `sm`, `md`, `lg`.\n\nExample:\n```html\n<div class="p-4 bg-gray-100">\n  This div has 1rem (16px) of padding on all sides.\n</div>\n```',
+      back: 'The p-{size} class adds padding on all sides. The size can be a number (0-96), px, or named sizes like sm, md, lg.\n\nExample:\n\n```html\n<div class="p-4 bg-gray-100">\n  This div has 1rem (16px) of padding on all sides.\n</div>\n```',
       language: 'html',
       stats: {
         totalReviews: 0,
@@ -80,7 +80,7 @@ const tailwind_beginner: Deck = {
       deckId: 'deck_tailwind_beginner_001',
       userId: 'user_001',
       front: 'How do you create a flex container with Tailwind?',
-      back: 'Use the `flex` utility class to create a flex container.\n\nExample:\n```html\n<div class="flex">\n  <div class="p-2">Item 1</div>\n  <div class="p-2">Item 2</div>\n  <div class="p-2">Item 3</div>\n</div>\n```',
+      back: 'Use the flex utility class to create a flex container.\n\nExample:\n\n```html\n<div class="flex">\n  <div class="p-2">Item 1</div>\n  <div class="p-2">Item 2</div>\n  <div class="p-2">Item 3</div>\n</div>\n```',
       language: 'html',
       stats: {
         totalReviews: 0,
@@ -97,7 +97,7 @@ const tailwind_beginner: Deck = {
       deckId: 'deck_tailwind_beginner_001',
       userId: 'user_001',
       front: "What's the difference between `mx-auto` and `px-4`?",
-      back: '`mx-auto` sets horizontal margins to auto (centering the element), while `px-4` adds horizontal padding.\n\nExample:\n```html\n<!-- Centered container with horizontal padding -->\n<div class="mx-auto px-4 max-w-4xl">\n  Centered content with padding on left and right.\n</div>\n```',
+      back: 'mx-auto sets horizontal margins to auto (centering the element), while px-4 adds horizontal padding.\n\nExample:\n\n```html\n<!-- Centered container with horizontal padding -->\n<div class="mx-auto px-4 max-w-4xl">\n  Centered content with padding on left and right.\n</div>\n```',
       language: 'html',
       stats: {
         totalReviews: 0,
@@ -114,7 +114,7 @@ const tailwind_beginner: Deck = {
       deckId: 'deck_tailwind_beginner_001',
       userId: 'user_001',
       front: 'How do you make text bold and increase its font size?',
-      back: 'Combine `font-bold` for bold text and `text-{size}` for font size.\n\nExample:\n```html\n<h2 class="font-bold text-xl">This is a heading</h2>\n<p class="font-bold text-lg">This is important text</p>\n```',
+      back: 'Combine font-bold for bold text and text-{size} for font size.\n\nExample:\n\n```html\n<h2 class="font-bold text-xl">This is a heading</h2>\n<p class="font-bold text-lg">This is important text</p>\n```',
       language: 'html',
       stats: {
         totalReviews: 0,
@@ -131,7 +131,7 @@ const tailwind_beginner: Deck = {
       deckId: 'deck_tailwind_beginner_001',
       userId: 'user_001',
       front: "What does the 'hover:' prefix do in Tailwind?",
-      back: 'The `hover:` prefix creates styles that apply on hover (pseudo-class).\n\nExample:\n```html\n<button class="bg-blue-500 hover:bg-blue-700 transition-colors">\n  Hover over me\n</button>\n```',
+      back: 'The hover: prefix creates styles that apply on hover (pseudo-class).\n\nExample:\n\n```html\n<button class="bg-blue-500 hover:bg-blue-700 transition-colors">\n  Hover over me\n</button>\n```',
       language: 'html',
       stats: {
         totalReviews: 0,
@@ -148,7 +148,7 @@ const tailwind_beginner: Deck = {
       deckId: 'deck_tailwind_beginner_001',
       userId: 'user_001',
       front: 'How do you create rounded corners on a div?',
-      back: 'Use the `rounded` utility class. You can specify size with `rounded-{size}`.\n\nExample:\n```html\n<div class="rounded-lg p-4 bg-gray-200">\n  This div has large rounded corners.\n</div>\n```',
+      back: 'Use the rounded utility class. You can specify size with rounded-{size}.\n\nExample:\n\n```html\n<div class="rounded-lg p-4 bg-gray-200">\n  This div has large rounded corners.\n</div>\n```',
       language: 'html',
       stats: {
         totalReviews: 0,
@@ -165,7 +165,7 @@ const tailwind_beginner: Deck = {
       deckId: 'deck_tailwind_beginner_001',
       userId: 'user_001',
       front: "What's the purpose of the @apply directive?",
-      back: '`@apply` lets you extract repeated utility patterns into custom CSS classes.\n\nExample:\n```css\n.btn-primary {\n  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;\n}\n\n.btn-primary:hover {\n  @apply bg-blue-700;\n}\n```',
+      back: '@apply lets you extract repeated utility patterns into custom CSS classes.\n\nExample:\n\n```css\n.btn-primary {\n  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;\n}\n\n.btn-primary:hover {\n  @apply bg-blue-700;\n}\n```',
       language: 'css',
       stats: {
         totalReviews: 0,
@@ -182,7 +182,7 @@ const tailwind_beginner: Deck = {
       deckId: 'deck_tailwind_beginner_001',
       userId: 'user_001',
       front: "How do you control an element's width with Tailwind?",
-      back: 'Use `w-{size}` classes. Sizes can be fixed (w-64), percentage (w-1/2), or responsive.\n\nExample:\n```html\n<div class="w-full md:w-1/2 lg:w-1/3 p-4">\n  Full width on mobile, half on medium, third on large screens.\n</div>\n```',
+      back: 'Use w-{size} classes. Sizes can be fixed (w-64), percentage (w-1/2), or responsive.\n\nExample:\n\n```html\n<div class="w-full md:w-1/2 lg:w-1/3 p-4">\n  Full width on mobile, half on medium, third on large screens.\n</div>\n```',
       language: 'html',
       stats: {
         totalReviews: 0,
