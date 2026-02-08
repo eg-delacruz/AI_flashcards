@@ -14,9 +14,10 @@ import {
 
 import { AnimatePresence } from 'motion/react';
 import { motion } from 'motion/react';
+import { useParams } from 'next/navigation';
 import CodeDisplay from '@/components/CodeDisplay/CodeDisplay';
-import { react_beginner } from '@/data/react_beginner';
-import { tailwind_beginner } from '@/data/tailwind_beginner';
+import { getDeckById } from '@/data/utils';
+import Link from 'next/link';
 
 /* 
 NOTE: was thinking of:
@@ -42,14 +43,18 @@ const ReviewDeck = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const [cards] = useState(tailwind_beginner.cards);
+  const { deckId } = useParams<{ deckId: string }>();
+  const deck = getDeckById(deckId);
+  const [cards] = useState(deck?.cards ?? []);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
 
   const currentCard = cards[currentIndex];
   const totalCards = cards.length;
-  const progressPercentage = ((currentIndex + 1) / totalCards) * 100;
+  const progressPercentage = totalCards
+    ? ((currentIndex + 1) / totalCards) * 100
+    : 0;
 
   // --- Animations ---
   // Animation for moving between cards (slide in from right)
@@ -80,12 +85,25 @@ const ReviewDeck = () => {
     }
   };
 
-  const handleBack = () => {
-    if (currentIndex > 0) {
-      setIsFlipped(false);
-      setCurrentIndex(currentIndex - 1);
-    }
-  };
+  if (!deck) {
+    return (
+      <div className='min-h-screen bg-page text-text flex items-center justify-center px-4'>
+        <div className='bg-surface border border-border rounded-xl p-6 text-center text-text-muted'>
+          Deck not found.
+        </div>
+      </div>
+    );
+  }
+
+  if (!currentCard) {
+    return (
+      <div className='min-h-screen bg-page text-text flex items-center justify-center px-4'>
+        <div className='bg-surface border border-border rounded-xl p-6 text-center text-text-muted'>
+          This deck has no cards yet.
+        </div>
+      </div>
+    );
+  }
 
   return (
     // Main Container
@@ -93,12 +111,13 @@ const ReviewDeck = () => {
       {/* Header - Full Width */}
       <header className='w-full z-10 bg-page'>
         <div className='flex items-center justify-between px-4 py-1.5 max-w-2xl mx-auto'>
-          <button
-            onClick={handleBack}
-            className='p-2 hover:bg-surface-muted rounded-full transition-colors'
+          <Link
+            href={`/deck/${deckId}`}
+            className='p-2 rounded-full transition-colors bg-surface-muted/30 hover:bg-surface-muted border border-transparent hover:border-border'
+            aria-label='Back to deck'
           >
-            <ChevronLeft size={24} />
-          </button>
+            <ChevronLeft size={24} className='text-text' />
+          </Link>
           <div className='flex gap-4'>
             <button className='p-2 hover:bg-surface-muted rounded-full transition-colors'>
               <Trash2 size={20} className='text-text-muted' />
